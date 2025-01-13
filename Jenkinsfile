@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label 'windows'  // Spécifie que nous voulons un agent Windows
+    }
     
     environment {
         DOCKER_PATH = '"C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.exe"'
