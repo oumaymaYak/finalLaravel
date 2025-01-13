@@ -1,8 +1,10 @@
 pipeline {
-    agent any
-
+    agent {
+        label 'windows'  // Spécifie que nous voulons un agent Windows
+    }
+    
     environment {
-        DOCKER_PATH = 'docker'
+        DOCKER_PATH = '"C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.exe"'
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
         DOCKER_IMAGE = "oumaymayak/laravel-app"
         DOCKER_TAG = "${BUILD_NUMBER}"
@@ -12,9 +14,9 @@ pipeline {
         stage('Check Environment') {
             steps {
                 script {
-                    sh 'ls -la'
-                    sh "${DOCKER_PATH} --version"
-                    sh '[ -f Dockerfile ] && echo "Dockerfile found" || (echo "Dockerfile missing" && exit 1)'
+                    bat 'dir'
+                    bat "${DOCKER_PATH} --version"
+                    bat 'if exist Dockerfile (echo Dockerfile found) else (echo Dockerfile missing && exit 1)'
                 }
             }
         }
@@ -23,10 +25,8 @@ pipeline {
             steps {
                 script {
                     echo "Starting Docker build..."
-                    sh """
-                        ${DOCKER_PATH} build -t ${DOCKER_IMAGE}:${DOCKER_TAG} .
-                        ${DOCKER_PATH} tag ${DOCKER_IMAGE}:${DOCKER_TAG} ${DOCKER_IMAGE}:latest
-                    """
+                    bat "${DOCKER_PATH} build -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
+                    bat "${DOCKER_PATH} tag ${DOCKER_IMAGE}:${DOCKER_TAG} ${DOCKER_IMAGE}:latest"
                     echo "Docker build completed"
                 }
             }
@@ -36,7 +36,7 @@ pipeline {
             steps {
                 script {
                     echo "Starting Trivy security scan..."
-                    sh """
+                    bat """
                         docker run --rm \
                         -v /var/run/docker.sock:/var/run/docker.sock \
                         aquasec/trivy image ${DOCKER_IMAGE}:${DOCKER_TAG} \
@@ -52,12 +52,10 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'dockerhub', 
                                                     usernameVariable: 'DOCKERHUB_USERNAME', 
                                                     passwordVariable: 'DOCKERHUB_PASSWORD')]) {
-                        sh "echo \$DOCKERHUB_PASSWORD | ${DOCKER_PATH} login -u \$DOCKERHUB_USERNAME --password-stdin"
+                        bat "echo %DOCKERHUB_PASSWORD%| ${DOCKER_PATH} login -u %DOCKERHUB_USERNAME% --password-stdin"
                     }
-                    sh """
-                        ${DOCKER_PATH} push ${DOCKER_IMAGE}:${DOCKER_TAG}
-                        ${DOCKER_PATH} push ${DOCKER_IMAGE}:latest
-                    """
+                    bat "${DOCKER_PATH} push ${DOCKER_IMAGE}:${DOCKER_TAG}"
+                    bat "${DOCKER_PATH} push ${DOCKER_IMAGE}:latest"
                 }
             }
         }
@@ -65,11 +63,9 @@ pipeline {
         stage('Cleanup') {
             steps {
                 script {
-                    sh """
-                        ${DOCKER_PATH} rmi ${DOCKER_IMAGE}:${DOCKER_TAG}
-                        ${DOCKER_PATH} rmi ${DOCKER_IMAGE}:latest
-                        ${DOCKER_PATH} logout
-                    """
+                    bat "${DOCKER_PATH} rmi ${DOCKER_IMAGE}:${DOCKER_TAG}"
+                    bat "${DOCKER_PATH} rmi ${DOCKER_IMAGE}:latest"
+                    bat "${DOCKER_PATH} logout"
                 }
             }
         }
