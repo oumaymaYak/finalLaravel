@@ -2,6 +2,7 @@
 
 📖 **Description**
 Une application full stack Laravel de vente en ligne de produits cosmétiques, intégrant Docker, Jenkins et Kubernetes pour un déploiement moderne et automatisé.
+
 🚀 Technologies Utilisées
 
 - Backend :
@@ -73,7 +74,9 @@ kubectl apply -f k8s/
 -  Vérifier le déploiement
 kubectl get pods
 kubectl get services
+
 📁 **Structure du Projet**
+
 CopyfinalLaravel/
 ├── app/                 # Code source Laravel
 ├── database/           # Migrations et seeders
