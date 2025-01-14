@@ -23,7 +23,7 @@ ArgoCD
 
 **Installation**
 1. Configuration Locale
-'''bashCopy# Cloner le projet
+bashCopy# Cloner le projet
 git clone https://github.com/oumaymaYak/finalLaravel.git
 cd finalLaravel'''
 
