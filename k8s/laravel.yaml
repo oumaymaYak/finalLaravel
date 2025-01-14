@@ -1,0 +1,32 @@
+# laravel.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laravel
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: laravel
+  template:
+    metadata:
+      labels:
+        app: laravel
+    spec:
+      containers:
+      - name: laravel
+        image: finallaravel-app:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 9000
+        envFrom:
+        - configMapRef:
+            name: laravel-config
+        - secretRef:
+            name: laravel-secret
+        volumeMounts:
+        - name: laravel-storage
+          mountPath: /var/www/storage
+      volumes:
+      - name: laravel-storage
+        emptyDir: {}
