@@ -25,7 +25,7 @@ ArgoCD
 1. Configuration Locale
    ```Cloner le projet
 git clone https://github.com/oumaymaYak/finalLaravel.git
-cd finalLaravel
+cd finalLaravel ```
 
 # Installer les dépendances
 composer install
