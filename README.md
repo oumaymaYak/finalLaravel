@@ -1,18 +1,31 @@
-# Application E-commerce de Produits Cosmétiques avec Laravel
-    **Description**
+Application E-commerce de Produits Cosmétiques avec Laravel
+Show Image
+Show Image
+Show Image
+Show Image
+Show Image
+📖 Description
 Une application full stack Laravel de vente en ligne de produits cosmétiques, intégrant Docker, Jenkins et Kubernetes pour un déploiement moderne et automatisé.
-    **Technologies Utilisées**
+🚀 Technologies Utilisées
+
+Backend :
 
 Laravel 10.x
 PHP 8.1
 MySQL 8.0
+
+
+DevOps :
+
 Docker & Docker Compose
 Jenkins
 Kubernetes (Minikube)
 Nginx
 ArgoCD
 
-**Prérequis**
+
+
+📋 Prérequis
 
 Docker Desktop
 Git
@@ -21,11 +34,11 @@ Minikube
 kubectl
 ArgoCD
 
-**Installation**
-1. Configuration Locale
-Cloner le projet
-```bash git clone https://github.com/oumaymaYak/finalLaravel.git
-cd finalLaravel```
+🔧 Installation
+Configuration Locale
+bashCopy# Cloner le projet
+git clone https://github.com/oumaymaYak/finalLaravel.git
+cd finalLaravel
 
 # Installer les dépendances
 composer install
@@ -34,26 +47,26 @@ npm install
 # Configurer l'environnement
 cp .env.example .env
 php artisan key:generate
-2. Docker
+Docker
 bashCopy# Construire et démarrer les conteneurs
 docker-compose up -d --build
 
 # Vérifier les services
 docker-compose ps
-3. Jenkins Pipeline
-Le pipeline Jenkins inclut :
-
-Build de l'image Docker
-Scan des vulnérabilités avec Trivy
-Push vers Docker Hub
-
-**Configuration:**
+Jenkins Pipeline
+Configuration requise :
 
 Accédez à Jenkins (http://localhost:8080)
 Créez les credentials DockerHub (ID: 'dockerhub')
 Créez un nouveau pipeline pointant vers le Jenkinsfile
 
-**4. Kubernetes (Minikube)**
+Le pipeline inclut :
+
+Build de l'image Docker
+Scan des vulnérabilités avec Trivy
+Push vers Docker Hub
+
+Kubernetes (Minikube)
 bashCopy# Démarrer Minikube
 minikube start
 
@@ -63,7 +76,7 @@ kubectl apply -f k8s/
 # Vérifier le déploiement
 kubectl get pods
 kubectl get services
-Structure du Projet
+📁 Structure du Projet
 CopyfinalLaravel/
 ├── app/                 # Code source Laravel
 ├── database/           # Migrations et seeders
@@ -71,22 +84,22 @@ CopyfinalLaravel/
 ├── nginx/             # Configuration nginx
 ├── Dockerfile         # Build de l'application
 └── docker-compose.yml # Configuration services
-**Déploiement**
+🚀 Déploiement
 Pipeline CI/CD
 
-**1.Build**
+Build
 
 Construction de l'image Docker
 Tests unitaires et d'intégration
 
 
-**Security Scan**
+Security Scan
 
 Analyse avec Trivy
 Vérification des vulnérabilités
 
 
-**Push**
+Push
 
 Publication sur DockerHub
 Tagging des versions
@@ -100,7 +113,7 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 
 # Synchronisation
 argocd app sync monapp-cosmetique
-Maintenance
+🔍 Maintenance
 Logs et Monitoring
 bashCopy# Logs applicatifs
 kubectl logs -f deployment/laravel
@@ -121,7 +134,7 @@ kubectl exec -it [pod-mysql] -- mysqldump -u root -p[password] database > backup
 
 # Volumes persistants
 kubectl get pv -o yaml > pv-backup.yaml
-Dépannage
+🔧 Dépannage
 Problèmes courants
 
 Erreur de connexion Base de données
@@ -143,7 +156,7 @@ Vérifier les ressources disponibles
 
 
 
-**Sécurité**
+🔒 Sécurité
 
 Utilisation des secrets Kubernetes
 Configuration des network policies
@@ -151,7 +164,9 @@ Limitation des accès aux ressources
 Mises à jour régulières des dépendances
 Scans de sécurité périodiques
 
-**Contact**
+📄 Licence
+Ce projet est sous licence MIT
+📞 Contact
 
 Ouamayma Yakoubi
 GitHub : oumaymaYak
