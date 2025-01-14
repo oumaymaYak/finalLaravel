@@ -105,20 +105,26 @@ Tagging des versions
 
 
 **ArgoCD**
+
 bashCopy# Installation
 kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
  Synchronisation
 argocd app sync monapp-cosmetique
+
 🔍 **Maintenance**
+
 **Logs et Monitoring**
+
 bashCopy# Logs applicatifs
 kubectl logs -f deployment/laravel
 
 - Surveillance des services
 kubectl get pods --watch
+
 **Mises à jour**
+
 bashCopy# Application
 git pull origin main
 docker-compose build
@@ -126,13 +132,17 @@ docker-compose up -d
 
 Kubernetes
 kubectl apply -f k8s/
+
 **Sauvegardes**
+
 bashCopy# Base de données
 kubectl exec -it [pod-mysql] -- mysqldump -u root -p[password] database > backup.sql
 
  Volumes persistants
 kubectl get pv -o yaml > pv-backup.yaml
+
 🔧 **Dépannage**
+
 **Problèmes courants**
 
 Erreur de connexion Base de données
