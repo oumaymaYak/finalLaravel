@@ -1,82 +1,79 @@
-Application E-commerce de Produits Cosmétiques avec Laravel
-Show Image
-Show Image
-Show Image
-Show Image
-Show Image
-📖 Description
+# Application E-commerce de Produits Cosmétiques avec Laravel
+
+📖 **Description**
 Une application full stack Laravel de vente en ligne de produits cosmétiques, intégrant Docker, Jenkins et Kubernetes pour un déploiement moderne et automatisé.
 🚀 Technologies Utilisées
 
-Backend :
+- Backend :
 
-Laravel 10.x
-PHP 8.1
-MySQL 8.0
-
-
-DevOps :
-
-Docker & Docker Compose
-Jenkins
-Kubernetes (Minikube)
-Nginx
-ArgoCD
+  - Laravel 10.x
+  - PHP 8.1
+  - MySQL 8.0
 
 
+- DevOps :
 
-📋 Prérequis
+  - Docker & Docker Compose
+  - Jenkins
+  - Kubernetes (Minikube)
+  - Nginx
+  - ArgoCD
 
-Docker Desktop
-Git
-Jenkins
-Minikube
-kubectl
-ArgoCD
 
-🔧 Installation
-Configuration Locale
+
+📋 **Prérequis**
+
+- Docker Desktop
+- Git
+- Jenkins
+- Minikube
+- kubectl
+- ArgoCD
+
+🔧 **Installation**
+**Configuration Locale**
 bashCopy# Cloner le projet
 git clone https://github.com/oumaymaYak/finalLaravel.git
 cd finalLaravel
 
-# Installer les dépendances
+-  Installer les dépendances
 composer install
 npm install
 
-# Configurer l'environnement
+- Configurer l'environnement
 cp .env.example .env
 php artisan key:generate
-Docker
+**Docker**
 bashCopy# Construire et démarrer les conteneurs
 docker-compose up -d --build
 
-# Vérifier les services
+- Vérifier les services
 docker-compose ps
-Jenkins Pipeline
-Configuration requise :
 
-Accédez à Jenkins (http://localhost:8080)
-Créez les credentials DockerHub (ID: 'dockerhub')
-Créez un nouveau pipeline pointant vers le Jenkinsfile
+**Jenkins Pipeline**
+**Configuration requise** :
+
+1. Accédez à Jenkins** (http://localhost:8080)
+2. Créez les credentials DockerHub (ID: 'dockerhub')
+3. Créez un nouveau pipeline pointant vers le Jenkinsfile
 
 Le pipeline inclut :
 
-Build de l'image Docker
-Scan des vulnérabilités avec Trivy
-Push vers Docker Hub
+- Build de l'image Docker
+- Scan des vulnérabilités avec Trivy
+- Push vers Docker Hub
 
-Kubernetes (Minikube)
+**Kubernetes (Minikube)**
 bashCopy# Démarrer Minikube
 minikube start
 
-# Appliquer les configurations
+- Appliquer les configurations
 kubectl apply -f k8s/
 
-# Vérifier le déploiement
+-  Vérifier le déploiement
 kubectl get pods
 kubectl get services
-📁 Structure du Projet
+📁 **Structure du Projet**
 CopyfinalLaravel/
 ├── app/                 # Code source Laravel
 ├── database/           # Migrations et seeders
@@ -85,57 +82,51 @@ CopyfinalLaravel/
 ├── Dockerfile         # Build de l'application
 └── docker-compose.yml # Configuration services
 🚀 Déploiement
-Pipeline CI/CD
 
-Build
+**Pipeline CI/CD**
+
+1. Build
 
 Construction de l'image Docker
 Tests unitaires et d'intégration
 
-
-Security Scan
-
-Analyse avec Trivy
-Vérification des vulnérabilités
-
-
-Push
+2. Push
 
 Publication sur DockerHub
 Tagging des versions
 
 
 
-ArgoCD
+**ArgoCD**
 bashCopy# Installation
 kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
-# Synchronisation
+ Synchronisation
 argocd app sync monapp-cosmetique
-🔍 Maintenance
-Logs et Monitoring
+🔍 **Maintenance**
+**Logs et Monitoring**
 bashCopy# Logs applicatifs
 kubectl logs -f deployment/laravel
 
-# Surveillance des services
+- Surveillance des services
 kubectl get pods --watch
-Mises à jour
+**Mises à jour**
 bashCopy# Application
 git pull origin main
 docker-compose build
 docker-compose up -d
 
-# Kubernetes
+Kubernetes
 kubectl apply -f k8s/
-Sauvegardes
+**Sauvegardes**
 bashCopy# Base de données
 kubectl exec -it [pod-mysql] -- mysqldump -u root -p[password] database > backup.sql
 
-# Volumes persistants
+ Volumes persistants
 kubectl get pv -o yaml > pv-backup.yaml
-🔧 Dépannage
-Problèmes courants
+🔧 **Dépannage**
+**Problèmes courants**
 
 Erreur de connexion Base de données
 
@@ -143,20 +134,14 @@ Vérifier les credentials dans .env
 Vérifier les services Kubernetes
 
 
-Erreur de build Docker
+**Erreur de build Docker**
 
 Vérifier les permissions
 Nettoyer le cache : docker system prune
-
-
-Pod en CrashLoopBackOff
-
 Vérifier les logs : kubectl logs [pod-name]
 Vérifier les ressources disponibles
 
-
-
-🔒 Sécurité
+🔒 **Sécurité**
 
 Utilisation des secrets Kubernetes
 Configuration des network policies
@@ -164,8 +149,6 @@ Limitation des accès aux ressources
 Mises à jour régulières des dépendances
 Scans de sécurité périodiques
 
-📄 Licence
-Ce projet est sous licence MIT
 📞 Contact
 
 Ouamayma Yakoubi
