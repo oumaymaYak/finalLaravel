@@ -33,7 +33,9 @@ Une application full stack Laravel de vente en ligne de produits cosmétiques, i
 
 🔧 **Installation**
 **Configuration Locale**
-bashCopy# Cloner le projet
+
+ Cloner le projet
+ 
 git clone https://github.com/oumaymaYak/finalLaravel.git
 cd finalLaravel
 
@@ -45,16 +47,18 @@ npm install
 cp .env.example .env
 php artisan key:generate
 **Docker**
-bashCopy# Construire et démarrer les conteneurs
+
+ Construire et démarrer les conteneurs
 docker-compose up -d --build
 
 - Vérifier les services
 docker-compose ps
 
 **Jenkins Pipeline**
+
 **Configuration requise** :
 
-1. Accédez à Jenkins** (http://localhost:8080)
+1. Accédez à Jenkins (http://localhost:8080)
 2. Créez les credentials DockerHub (ID: 'dockerhub')
 3. Créez un nouveau pipeline pointant vers le Jenkinsfile
 
