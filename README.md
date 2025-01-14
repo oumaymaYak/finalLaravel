@@ -1,4 +1,4 @@
-**Application E-commerce de Produits Cosmétiques avec Laravel**
+# Application E-commerce de Produits Cosmétiques avec Laravel
     **Description**
 Une application full stack Laravel de vente en ligne de produits cosmétiques, intégrant Docker, Jenkins et Kubernetes pour un déploiement moderne et automatisé.
     **Technologies Utilisées**
@@ -23,7 +23,7 @@ ArgoCD
 
 **Installation**
 1. Configuration Locale
-bashCopy# Cloner le projet
+   ```Cloner le projet
 git clone https://github.com/oumaymaYak/finalLaravel.git
 cd finalLaravel
 
